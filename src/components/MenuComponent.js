@@ -2,58 +2,32 @@ import React, {Component} from 'react';
 import {Media} from 'reactstrap';
 import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
 import DishDetail from 'F:/t2/react/confusion/src/components/DishdetailComponent';
-class Menu extends Component {
 
-	constructor(props){
-		super(props);
-		 this.state = {
-		 	selectedDish: null
-		 };
-	}
 	
-    onDishSelect(dish) {
-    	this.setState({ selectedDish : dish});
-    }
+   
     
-    renderDish(dish){
-               
-      return (
+   function RenderDish({dish, onClick}){
 
-            <DishDetail selectedDish = {this.state.selectedDish} />
-      );  
+    
+	      return (
+	              <Card onClick={() => onClick(dish.id)}>
+	                             <CardImg width="100%" src={dish.image} alt={dish.name} />
+	                             <CardImgOverlay>
+	                                <CardTitle>{dish.name}</CardTitle> 
+	                             </CardImgOverlay>
+	                     </Card>
+	            
+	      );  
 
-        /*if (dish != null)
-	    	return (
-	    		<Card >
-	              <CardImg width="100%" src={dish.image} alt={dish.name} />
-		            <CardBody>
-		             
-		                <CardTitle >{ dish.name} </CardTitle> 
-
-		                <CardText> {dish.description} </CardText>
-		             
-		             </CardBody>
-	            </Card>
-	    		);
-	    else
-	    	return(
-	    		<div>
-	    		</div>
-
-	    		);*/
+        
     }
 
-	render(){
-		const menu = this.props.dishes.map((dish) =>{
+	const Menu = (props) => {
+		const menu = props.dishes.map((dish) =>{
 
 			return (
                    <div key={dish.id} className="col-12 col-md-5 m-1">
-                     <Card onClick={() => this.onDishSelect(dish)}>
-                             <CardImg width="100%" src={dish.image} alt={dish.name} />
-                             <CardImgOverlay>
-                                <CardTitle >{ dish.name} </CardTitle> 
-                             </CardImgOverlay>
-                     </Card>
+                     <RenderDish dish = {dish} onClick ={props.onClick()} />
                    </div>
 				);
 
@@ -65,18 +39,10 @@ class Menu extends Component {
                        {menu}
 			     </div>
 			    
-                      
-                       { this.renderDish(this.state.selectedDish)}
-                       
-			     
-
 			</div>
-
-			
-
 			);
 	}
 
-}
+
 
 export default Menu;

@@ -3,18 +3,10 @@ import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reac
 
 
 
-class DishDetail  extends Component {
 
-	constructor(){
-      super();
-      this.state = {
-		 	
-		 };
-
- 	}
 
  	
-   renderComments(comments){
+   function RenderComments({comments}){
 
    	        const comment = comments.map(
    	        	(item) =>{
@@ -41,7 +33,7 @@ class DishDetail  extends Component {
    }
 
 
-	renderDish(dish){
+	function RenderDish({dish}){
         if (dish != null)
 	    	return (
 	    		<>
@@ -56,7 +48,7 @@ class DishDetail  extends Component {
 
 		             </div>
 		             <div className="col-12 col-md-5 m-1">
-                          { this.renderComments(this.props.selectedDish.comments)}
+                          <RenderComments comments={props.selectedDish.comments} />
 
 		             </div>
 	             </>
@@ -69,20 +61,23 @@ class DishDetail  extends Component {
 	    		);
     }
 
-	render(){
+	const DishDetail = (props) => {
 		
 
 		return(
-		         <div className="row">
-                       
-                       { this.renderDish(this.props.selectedDish)}
-                      
+		        <div className="container">
+
+			         <div className="row">
+	                       
+	                       <RenderDish dish = {props.selectedDish}/>
+	                      
+				     </div>
 			     </div>
 
 			);
 	}
 
 
-}
+
 
 export default DishDetail;
