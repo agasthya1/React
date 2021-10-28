@@ -3,7 +3,10 @@ import {Navbar, NavbarBrand} from 'reactstrap'
 import Menu from './MenuComponent';
 import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
 import DishDetail from './DishdetailComponent';
+import Header from './HeaderComponent';
+import Footer from './FooterComponent'
 import {DISHES} from '../shared/dishes';
+;
 
 class Main extends Component {
 
@@ -14,6 +17,7 @@ class Main extends Component {
 			dishes : DISHES,
 			selectedDish: null
 		};
+		this.onDishSelect = this.onDishSelect.bind(this);
 	}
 
 	onDishSelect(dish) {
@@ -23,13 +27,10 @@ class Main extends Component {
 	render(){
 	   return (
 	      <div>
-	        <Navbar dark color="primary">
-	        <div className="container">
-	          <NavbarBrand href="/"> RESTORE REACT</NavbarBrand>
-	        </div>
-	        </Navbar>
+	        <Header />
 	        <Menu dishes = {this.state.dishes} onClick ={(dishid) => this.onDishSelect(dishid)}/>
 	        <DishDetail selectedDish={ this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0] } />
+	        <Footer/>      
 	      </div>
 	    );
     }

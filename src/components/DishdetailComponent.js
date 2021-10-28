@@ -48,7 +48,7 @@ import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reac
 
 		             </div>
 		             <div className="col-12 col-md-5 m-1">
-                          <RenderComments comments={props.selectedDish.comments} />
+                          <RenderComments comments={dish.comments} />
 
 		             </div>
 	             </>

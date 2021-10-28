@@ -27,7 +27,7 @@ import DishDetail from 'F:/t2/react/confusion/src/components/DishdetailComponent
 
 			return (
                    <div key={dish.id} className="col-12 col-md-5 m-1">
-                     <RenderDish dish = {dish} onClick ={props.onClick()} />
+                     <RenderDish dish = {dish} onClick ={props.onClick} />
                    </div>
 				);
 
